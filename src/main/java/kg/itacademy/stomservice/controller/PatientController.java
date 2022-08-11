@@ -1,10 +1,7 @@
 package kg.itacademy.stomservice.controller;
 
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
-import kg.itacademy.stomservice.model.PatientCreateModel;
-import kg.itacademy.stomservice.model.PatientModel;
-import kg.itacademy.stomservice.service.DentistService;
+import kg.itacademy.stomservice.models.PatientCreateModel;
+import kg.itacademy.stomservice.models.PatientModel;
 import kg.itacademy.stomservice.service.PatientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

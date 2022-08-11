@@ -1,12 +1,9 @@
 package kg.itacademy.stomservice.controller;
 
 import com.sun.istack.NotNull;
-import kg.itacademy.stomservice.model.AvailableTimeSlotCreateModel;
-import kg.itacademy.stomservice.model.AvailableTimeSlotModel;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
+import kg.itacademy.stomservice.models.AvailableTimeSlotCreateModel;
+import kg.itacademy.stomservice.models.AvailableTimeSlotModel;
 import kg.itacademy.stomservice.service.AvailableTimeSlotService;
-import kg.itacademy.stomservice.service.DentistService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 

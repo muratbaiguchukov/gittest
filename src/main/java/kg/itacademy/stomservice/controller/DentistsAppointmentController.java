@@ -1,12 +1,10 @@
 package kg.itacademy.stomservice.controller;
 
+import com.sun.istack.NotNull;
 import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.entity.DentistsAppointment;
 import kg.itacademy.stomservice.entity.Patient;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
-import kg.itacademy.stomservice.model.DentistsAppointmentCreateModel;
-import kg.itacademy.stomservice.model.DentistsAppointmentModel;
+import kg.itacademy.stomservice.models.DentistsAppointmentCreateModel;
+import kg.itacademy.stomservice.models.DentistsAppointmentModel;
 import kg.itacademy.stomservice.service.DentistsAppointmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +60,8 @@ public class DentistsAppointmentController {
         }
     }
 
-    @GetMapping(path = "/getAllByDentistsAppointmentVisitDate")
-    public ResponseEntity<List<DentistsAppointmentModel>> getByAllDentistsAppointmentVisitDate(@NotBlank @RequestParam("allDentistsAppointmentVisitDate") LocalDate visitDate) {
+    @GetMapping(path = "/getAllByVisitDate")
+    public ResponseEntity<List<DentistsAppointmentModel>> getAllByVisitDate(@NotNull @RequestParam("allVisitDate") LocalDate visitDate) {
         try {
             return ResponseEntity.ok(dentistsAppointmentService.getAllByVisitDate(visitDate));
         } catch (RuntimeException ex) {

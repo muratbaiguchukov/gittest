@@ -48,36 +48,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .authorizeRequests()
 
-//                .antMatchers(HttpMethod.POST, "/api/user/*").permitAll()
-
-
                 .antMatchers(HttpMethod.GET, "/api/dentist/**").hasAnyRole("Admin", "User") // можно hasRole("Admin") -- тогда
 //                // доступ к справочнику только у Admin, hasAnyRole("Admin", "User") -- если у нас несколько ролей
-                .antMatchers(HttpMethod.POST, "/api/dentist/*").hasRole("Admin")
-                .antMatchers(HttpMethod.PUT, "/api/dentist/*").hasRole("Admin")
-                .antMatchers(HttpMethod.DELETE, "/api/dentist/*").hasRole("Admin")
+                .antMatchers(HttpMethod.POST, "/api/dentist/**").hasRole("Admin")
+                .antMatchers(HttpMethod.PUT, "/api/dentist/**").hasRole("Admin")
+                .antMatchers(HttpMethod.DELETE, "/api/dentist/**").hasRole("Admin")
 
-                //.antMatchers(HttpMethod.GET, "/api/patient/*").hasRole("Admin") //permitAll()-- можно все
-                //.antMatchers(HttpMethod.POST, "/api/patient/*").hasRole("Admin")
-                //.antMatchers(HttpMethod.PUT, "/api/patient/*").hasRole("Admin")
-                //.antMatchers(HttpMethod.DELETE, "/api/patient/*").hasRole("Admin")
+                .antMatchers("/api/patient/**").hasRole("Admin")
 
-                .antMatchers("/api/patient/*").hasRole("Admin") //это заменяет строки 57-60
+                .antMatchers(HttpMethod.GET, "/api/workShift/**").hasAnyRole("Admin", "User")
+                .antMatchers(HttpMethod.POST, "/api/workShift/**").hasRole("Admin")
+                .antMatchers(HttpMethod.PUT, "/api/workShift/**").hasRole("Admin")
+                .antMatchers(HttpMethod.DELETE, "/api/workShift/**").hasRole("Admin")
 
+                .antMatchers("/api/card/**").hasRole("Admin")
 
-                //.antMatchers(HttpMethod.GET, "/api/dentistSchedule/*").hasRole("Admin") //permitAll()-- можно все
-                //.antMatchers(HttpMethod.POST, "/api/dentistSchedule/*").hasRole("Admin")
-                //.antMatchers(HttpMethod.PUT, "/api/dentistSchedule/*").hasRole("Admin")
-                //.antMatchers(HttpMethod.DELETE, "/api/dentistSchedule/*").hasRole("Admin")
+                .antMatchers(HttpMethod.GET, "/api/dentalWork/**").hasAnyRole("Admin", "User")
+                .antMatchers(HttpMethod.POST, "/api/dentalWork/**").hasRole("Admin")
+                .antMatchers(HttpMethod.PUT, "/api/dentalWork/**").hasRole("Admin")
+                .antMatchers(HttpMethod.DELETE, "/api/dentalWork/**").hasRole("Admin")
 
-                .antMatchers("/api/dentistSchedule/*").hasRole("Admin") //это заменяет строки 65-68
+                .antMatchers("/api/dentistsAppointment/**").permitAll()
 
-                //.antMatchers(HttpMethod.GET, "/api/dentistAppointment/*").permitAll()
-                //.antMatchers(HttpMethod.POST, "/api/dentistAppointment/*").permitAll()
-                //.antMatchers(HttpMethod.PUT, "/api/dentistAppointment/*").permitAll()
-                //.antMatchers(HttpMethod.DELETE, "/api/dentistAppointment/*").permitAll()
-
-                .antMatchers("/api/dentistAppointment/*").permitAll() //это заменяет строки 72-75
+                .antMatchers(HttpMethod.GET, "/api/availableTimeSlot/**").hasAnyRole("Admin", "User") //
+                .antMatchers(HttpMethod.POST, "/api/availableTimeSlot/**").hasRole("Admin")
+                .antMatchers(HttpMethod.PUT, "/api/availableTimeSlot/**").hasRole("Admin")
+                .antMatchers(HttpMethod.DELETE, "/api/availableTimeSlot/**").hasRole("Admin")
 
                 .antMatchers("/api/role/*").permitAll()
 

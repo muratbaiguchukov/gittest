@@ -10,7 +10,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "dentists_appointment")
+@Table(name = "dentists_appointment",uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"visit_start_time", "visit_end_time", "visit_date"})
+})
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)

@@ -1,8 +1,8 @@
 package kg.itacademy.stomservice.controller;
 
 import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.model.WorkShiftCreateModel;
-import kg.itacademy.stomservice.model.WorkShiftModel;
+import kg.itacademy.stomservice.models.WorkShiftCreateModel;
+import kg.itacademy.stomservice.models.WorkShiftModel;
 import kg.itacademy.stomservice.service.WorkShiftService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -57,10 +58,10 @@ public class WorkShiftController {
         }
     }
 
-    @GetMapping(path = "/getAllByWorkShiftDentist")
-    public ResponseEntity<List<WorkShiftModel>> getByAllDentist(@NotBlank @RequestParam("allDentist") Dentist dentist) {
+    @PostMapping(path = "/getAllByDentist/{id}")
+    public ResponseEntity<List<WorkShiftModel>> getAllByDentist(@PathVariable("id") Long dentistId) {
         try {
-            return ResponseEntity.ok(workShiftService.getAllByDentist(dentist));
+            return ResponseEntity.ok(workShiftService.getAllByDentist(dentistId));
         } catch (RuntimeException ex) {
             log.error(ex.getMessage(), ex);
             return ResponseEntity
@@ -69,8 +70,21 @@ public class WorkShiftController {
         }
     }
 
+//@GetMapping(path = "/getByAirportName")
+//    public ResponseEntity<List<AirportModel>> getByAirportName(@RequestParam("airportName") String airportName) {
+//        try {
+//            return ResponseEntity.ok(airportService.getAllByAirportName(airportName));
+//        } catch (RuntimeException ex) {
+//            log.error(ex.getMessage(), ex);
+//            return ResponseEntity
+//                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body(null);
+//        }
+//    }
+
+
     @GetMapping(path = "/getAllByWorkShiftDay")
-    public ResponseEntity<List<WorkShiftModel>> getByAllWorkShiftDay(@NotBlank @RequestParam("allDay") LocalDate workShiftDay) {
+    public ResponseEntity<List<WorkShiftModel>> getByAllWorkShiftDay(@NotNull @RequestParam("allDay") LocalDate workShiftDay) {
         try {
             return ResponseEntity.ok(workShiftService.getAllByWorkShiftDay(workShiftDay));
         } catch (RuntimeException ex) {
@@ -80,21 +94,6 @@ public class WorkShiftController {
                     .body(null);
         }
     }
-//
-//    @InitBinder
-//    protected void initBinder(WebDataBinder binder) {
-//        binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
-//            @Override
-//            public void setAsText(String text) throws IllegalArgumentException{
-//                setValue(LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-//            }
-//
-//            @Override
-//            public String getAsText() throws IllegalArgumentException {
-//                return DateTimeFormatter.ofPattern("yyyy-MM-dd").format((LocalDate) getValue());
-//            }
-//        });
-//    }
 
 }
 

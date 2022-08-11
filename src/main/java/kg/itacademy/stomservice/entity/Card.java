@@ -34,7 +34,7 @@ public class Card extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     PatientStatus patientStatus;
 
-    @Column(name = "duty")
-    BigDecimal duty;
+    @Column(name = "debt")
+    BigDecimal debt;
 
 }

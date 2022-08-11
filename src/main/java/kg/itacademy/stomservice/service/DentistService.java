@@ -1,8 +1,7 @@
 package kg.itacademy.stomservice.service;
 
-import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
+import kg.itacademy.stomservice.models.DentistCreateModel;
+import kg.itacademy.stomservice.models.DentistModel;
 
 import java.util.List;
 
@@ -16,5 +15,6 @@ public interface DentistService {
 
     List<DentistModel> getAllByDentistLastName(String dentistLastName); //получить всех стоматологов по фамилии
 
-    //List<DentistModel> getAll(); // получить всех дантистов
+    List<DentistModel> getAll();
+
 }

@@ -2,12 +2,14 @@ package kg.itacademy.stomservice.service.impl;
 
 import kg.itacademy.stomservice.entity.Dentist;
 import kg.itacademy.stomservice.entity.WorkShift;
-import kg.itacademy.stomservice.exceptions.WorkShiftModelNullException;
-import kg.itacademy.stomservice.exceptions.WorkShiftNotFoundException;
-import kg.itacademy.stomservice.mapper.WorkShiftMapper;
-import kg.itacademy.stomservice.model.WorkShiftCreateModel;
-import kg.itacademy.stomservice.model.WorkShiftModel;
-import kg.itacademy.stomservice.repository.WorkShiftRepository;
+import kg.itacademy.stomservice.exception.DentistNotFoundException;
+import kg.itacademy.stomservice.exception.WorkShiftModelNullException;
+import kg.itacademy.stomservice.exception.WorkShiftNotFoundException;
+import kg.itacademy.stomservice.mappers.WorkShiftMapper;
+import kg.itacademy.stomservice.models.WorkShiftCreateModel;
+import kg.itacademy.stomservice.models.WorkShiftModel;
+import kg.itacademy.stomservice.repositories.DentistRepository;
+import kg.itacademy.stomservice.repositories.WorkShiftRepository;
 import kg.itacademy.stomservice.service.WorkShiftService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import java.util.List;
 public class WorkShiftServiceImpl implements WorkShiftService {
 
     private final WorkShiftRepository workShiftRepository;
+    private final DentistRepository dentistRepository;
 
     @Override
     public WorkShiftModel create(WorkShiftCreateModel workShiftModel) {
@@ -43,8 +46,10 @@ public class WorkShiftServiceImpl implements WorkShiftService {
                 .findById(workShiftModel.getId())
                 .orElseThrow(() -> new WorkShiftNotFoundException("work shift not found by id " + workShiftModel.getId()));
 
-
-        existWorkShift.setDentist(workShiftModel.getDentist());
+        Dentist existDentist = dentistRepository
+                .findById(workShiftModel.getDentist().getId())
+                .orElseThrow(() -> new DentistNotFoundException("dentist not found by id " + workShiftModel.getDentist().getId()));
+        existWorkShift.setDentist(existDentist);
         existWorkShift.setStartDate(workShiftModel.getStarDate());
         existWorkShift.setEndDate(workShiftModel.getEndDate());
         existWorkShift.setWorkShiftStartTime(workShiftModel.getWorkShiftStartTime());
@@ -66,15 +71,16 @@ public class WorkShiftServiceImpl implements WorkShiftService {
     }
 
     @Override
-    public List<WorkShiftModel> getAllByDentist(Dentist dentist) {
+    public List<WorkShiftModel> getAllByDentist(Long dentistId) {
+        Dentist dentist = dentistRepository.findById(dentistId).orElseThrow();
         List<WorkShift> workShiftEntityList = workShiftRepository.findAllByDentist(dentist);
-
         List<WorkShiftModel> workShiftModelList = WorkShiftMapper.INSTANCE.toListModel(workShiftEntityList);
 
 
         return workShiftModelList;
     }
 
+    
     @Override
     public List<WorkShiftModel> getAllByWorkShiftDay(LocalDate workShiftDay) {
         List<WorkShift> workShiftEntityList = workShiftRepository.findAllByWorkShiftDay(workShiftDay);

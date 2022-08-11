@@ -1,12 +1,9 @@
 package kg.itacademy.stomservice.service;
 
 import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.entity.DentistsAppointment;
 import kg.itacademy.stomservice.entity.Patient;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
-import kg.itacademy.stomservice.model.DentistsAppointmentCreateModel;
-import kg.itacademy.stomservice.model.DentistsAppointmentModel;
+import kg.itacademy.stomservice.models.DentistsAppointmentCreateModel;
+import kg.itacademy.stomservice.models.DentistsAppointmentModel;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

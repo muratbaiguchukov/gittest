@@ -2,12 +2,12 @@ package kg.itacademy.stomservice.service.impl;
 
 import kg.itacademy.stomservice.entity.User;
 import kg.itacademy.stomservice.entity.UserRole;
-import kg.itacademy.stomservice.exceptions.UserSignInException;
-import kg.itacademy.stomservice.model.UserAuthModel;
-import kg.itacademy.stomservice.model.UserModel;
-import kg.itacademy.stomservice.repository.RoleRepository;
-import kg.itacademy.stomservice.repository.UserRepository;
-import kg.itacademy.stomservice.repository.UserRoleRepository;
+import kg.itacademy.stomservice.exception.UserSignInException;
+import kg.itacademy.stomservice.models.UserAuthModel;
+import kg.itacademy.stomservice.models.UserModel;
+import kg.itacademy.stomservice.repositories.RoleRepository;
+import kg.itacademy.stomservice.repositories.UserRepository;
+import kg.itacademy.stomservice.repositories.UserRoleRepository;
 import kg.itacademy.stomservice.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

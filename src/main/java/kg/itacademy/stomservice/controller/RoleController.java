@@ -1,8 +1,8 @@
 package kg.itacademy.stomservice.controller;
 
 import kg.itacademy.stomservice.entity.Role;
-import kg.itacademy.stomservice.model.RoleModel;
-import kg.itacademy.stomservice.repository.RoleRepository;
+import kg.itacademy.stomservice.models.RoleModel;
+import kg.itacademy.stomservice.repositories.RoleRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

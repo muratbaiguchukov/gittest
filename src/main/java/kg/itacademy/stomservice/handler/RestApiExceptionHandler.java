@@ -1,7 +1,7 @@
 package kg.itacademy.stomservice.handler;
 
-import kg.itacademy.stomservice.exceptions.ImDontKnowException;
-import kg.itacademy.stomservice.model.ErrorModel;
+import kg.itacademy.stomservice.exception.ImDontKnowException;
+import kg.itacademy.stomservice.models.ErrorModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;

@@ -1,17 +1,12 @@
 package kg.itacademy.stomservice.service.impl;
 
-import kg.itacademy.stomservice.entity.Dentist;
 import kg.itacademy.stomservice.entity.Patient;
-import kg.itacademy.stomservice.exceptions.DentistModelNullException;
-import kg.itacademy.stomservice.exceptions.DentistNotFoundException;
-import kg.itacademy.stomservice.exceptions.PatientModelNullException;
-import kg.itacademy.stomservice.exceptions.PatientNotFoundException;
-import kg.itacademy.stomservice.mapper.DentistMapper;
-import kg.itacademy.stomservice.mapper.PatientMapper;
-import kg.itacademy.stomservice.model.DentistModel;
-import kg.itacademy.stomservice.model.PatientCreateModel;
-import kg.itacademy.stomservice.model.PatientModel;
-import kg.itacademy.stomservice.repository.PatientRepository;
+import kg.itacademy.stomservice.exception.PatientModelNullException;
+import kg.itacademy.stomservice.exception.PatientNotFoundException;
+import kg.itacademy.stomservice.mappers.PatientMapper;
+import kg.itacademy.stomservice.models.PatientCreateModel;
+import kg.itacademy.stomservice.models.PatientModel;
+import kg.itacademy.stomservice.repositories.PatientRepository;
 import kg.itacademy.stomservice.service.PatientService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

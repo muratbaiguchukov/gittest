@@ -30,8 +30,8 @@ public class Patient extends BaseEntity {
     @Column(name = "phone_number")
     String patientPhoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "card_id")
-    Card card;
+    //@OneToOne
+    //@JoinColumn(name = "card_id")
+    //Card card;
 
 }

@@ -1,7 +1,7 @@
 package kg.itacademy.stomservice.controller;
 
-import kg.itacademy.stomservice.model.UserAuthModel;
-import kg.itacademy.stomservice.model.UserModel;
+import kg.itacademy.stomservice.models.UserAuthModel;
+import kg.itacademy.stomservice.models.UserModel;
 import kg.itacademy.stomservice.service.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

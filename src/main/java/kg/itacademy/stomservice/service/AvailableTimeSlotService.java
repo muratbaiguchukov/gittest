@@ -1,13 +1,9 @@
 package kg.itacademy.stomservice.service;
 
-import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.model.AvailableTimeSlotCreateModel;
-import kg.itacademy.stomservice.model.AvailableTimeSlotModel;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
+import kg.itacademy.stomservice.models.AvailableTimeSlotCreateModel;
+import kg.itacademy.stomservice.models.AvailableTimeSlotModel;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public interface AvailableTimeSlotService {

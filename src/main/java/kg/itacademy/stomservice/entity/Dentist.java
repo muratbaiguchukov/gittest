@@ -31,4 +31,7 @@ public class Dentist extends BaseEntity {
 
     @Column(name = "dentist_phone_number")
     String dentistPhoneNumber;
+
+    @Column(name = "email")
+    String email;
 }

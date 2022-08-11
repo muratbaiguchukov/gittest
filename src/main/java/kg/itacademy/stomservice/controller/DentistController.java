@@ -1,8 +1,7 @@
 package kg.itacademy.stomservice.controller;
 
-import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
+import kg.itacademy.stomservice.models.DentistCreateModel;
+import kg.itacademy.stomservice.models.DentistModel;
 import kg.itacademy.stomservice.service.DentistService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +59,18 @@ public class DentistController {
     public ResponseEntity<List<DentistModel>> getByAllDentistLastName(@NotBlank @RequestParam("allDentistLastName") String dentistLastName) {
         try {
             return ResponseEntity.ok(dentistService.getAllByDentistLastName(dentistLastName));
+        } catch (RuntimeException ex) {
+            log.error(ex.getMessage(), ex);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
+    }
+
+    @GetMapping(path = "/getAll")
+    public ResponseEntity<List<DentistModel>> getAll() {
+        try {
+            return ResponseEntity.ok(dentistService.getAll());
         } catch (RuntimeException ex) {
             log.error(ex.getMessage(), ex);
             return ResponseEntity

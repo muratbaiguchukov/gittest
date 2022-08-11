@@ -3,14 +3,13 @@ package kg.itacademy.stomservice.service.impl;
 import kg.itacademy.stomservice.entity.Dentist;
 import kg.itacademy.stomservice.entity.DentistsAppointment;
 import kg.itacademy.stomservice.entity.Patient;
-import kg.itacademy.stomservice.exceptions.*;
-import kg.itacademy.stomservice.mapper.DentistMapper;
-import kg.itacademy.stomservice.mapper.DentistsAppointmentMapper;
-import kg.itacademy.stomservice.model.AvailableTimeSlotModel;
-import kg.itacademy.stomservice.model.DentistModel;
-import kg.itacademy.stomservice.model.DentistsAppointmentCreateModel;
-import kg.itacademy.stomservice.model.DentistsAppointmentModel;
-import kg.itacademy.stomservice.repository.DentistsAppointmentRepository;
+import kg.itacademy.stomservice.exception.*;
+import kg.itacademy.stomservice.mappers.DentistsAppointmentMapper;
+import kg.itacademy.stomservice.models.DentistsAppointmentCreateModel;
+import kg.itacademy.stomservice.models.DentistsAppointmentModel;
+import kg.itacademy.stomservice.repositories.DentistRepository;
+import kg.itacademy.stomservice.repositories.DentistsAppointmentRepository;
+import kg.itacademy.stomservice.repositories.PatientRepository;
 import kg.itacademy.stomservice.service.DentistsAppointmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,8 @@ import java.util.List;
 public class DentistsAppointmentServiceImpl implements DentistsAppointmentService {
 
     private final DentistsAppointmentRepository dentistsAppointmentRepository;
+    private final DentistRepository dentistRepository;
+    private final PatientRepository patientRepository;
 
     @Override
     public DentistsAppointmentModel create(DentistsAppointmentCreateModel dentistsAppointmentModel) {
@@ -47,12 +48,20 @@ public class DentistsAppointmentServiceImpl implements DentistsAppointmentServic
                 .findById(dentistsAppointmentModel.getId())
                 .orElseThrow(() -> new DentistsAppointmentNotFoundException("dentists appointment not found by id " + dentistsAppointmentModel.getId()));
 
+        Dentist existDentist = dentistRepository
+                .findById(dentistsAppointmentModel.getDentist().getId())
+                .orElseThrow(() -> new DentistNotFoundException("dentist not found by id " + dentistsAppointmentModel.getDentist().getId()));
+        existDentistsAppointment.setDentist(existDentist);
 
-        existDentistsAppointment.setDentist(dentistsAppointmentModel.getDentist());
         existDentistsAppointment.setVisitDate(dentistsAppointmentModel.getVisitDate());
         existDentistsAppointment.setVisitStartTime(dentistsAppointmentModel.getVisitStartTime());
         existDentistsAppointment.setVisitEndTime(dentistsAppointmentModel.getVisitEndTime());
-        existDentistsAppointment.setPatient(dentistsAppointmentModel.getPatient());
+
+        Patient existPatient = patientRepository
+                .findById(dentistsAppointmentModel.getPatient().getId())
+                .orElseThrow(() -> new PatientNotFoundException("patient not found by id " + dentistsAppointmentModel.getPatient().getId()));
+        existDentistsAppointment.setPatient(existPatient);
+
         existDentistsAppointment.setRecordStatus(dentistsAppointmentModel.getRecordStatus());
         existDentistsAppointment.setSymptoms(dentistsAppointmentModel.getSymptoms());
         existDentistsAppointment.setDentistsComments(dentistsAppointmentModel.getDentistsComments());

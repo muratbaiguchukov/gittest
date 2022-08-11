@@ -1,12 +1,12 @@
 package kg.itacademy.stomservice.service.impl;
 
 import kg.itacademy.stomservice.entity.Dentist;
-import kg.itacademy.stomservice.exceptions.DentistModelNullException;
-import kg.itacademy.stomservice.exceptions.DentistNotFoundException;
-import kg.itacademy.stomservice.mapper.DentistMapper;
-import kg.itacademy.stomservice.model.DentistCreateModel;
-import kg.itacademy.stomservice.model.DentistModel;
-import kg.itacademy.stomservice.repository.DentistRepository;
+import kg.itacademy.stomservice.exception.DentistModelNullException;
+import kg.itacademy.stomservice.exception.DentistNotFoundException;
+import kg.itacademy.stomservice.mappers.DentistMapper;
+import kg.itacademy.stomservice.models.DentistCreateModel;
+import kg.itacademy.stomservice.models.DentistModel;
+import kg.itacademy.stomservice.repositories.DentistRepository;
 import kg.itacademy.stomservice.service.DentistService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,6 +48,7 @@ public class DentistServiceImpl implements DentistService {
         existDentist.setDentistFirstName(dentistModel.getDentistFirstName());
         existDentist.setDentistMidlName(dentistModel.getDentistMidlName());
         existDentist.setDentistPhoneNumber(dentistModel.getDentistPhoneNumber());
+        existDentist.setEmail(dentistModel.getEmail());
         existDentist.setSpeciality(dentistModel.getSpeciality());
 
         existDentist = dentistRepository.save(existDentist);
@@ -76,13 +77,10 @@ public class DentistServiceImpl implements DentistService {
         return dentistModelList;
     }
 
-//    @Override
-//    public List<DentistModel> getAll() {
-//        List<Dentist> dentistEntityList = dentistRepository.getAll();
-//        List<DentistModel> dentistModelList = DentistMapper.INSTANCE.toListModel(dentistEntityList);
-//        return dentistModelList;
-//    }
-
+    @Override
+    public List<DentistModel> getAll() {
+        return DentistMapper.INSTANCE.toListModel(dentistRepository.findAll());
+    }
 
 }
 
